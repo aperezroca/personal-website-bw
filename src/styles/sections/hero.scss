@@ -1,0 +1,112 @@
+$hero__animation-delay-step: 0.2s;
+$hero__animation-duration: 0.5s;
+
+.hero {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Josefin Slab', serif;
+  overflow: hidden;
+}
+
+.hero > * {
+  display: block;
+}
+
+.hero > :first-child,
+.hero > :nth-child(2),
+.hero > :nth-child(3) {
+  -webkit-animation: hero__appear--above $hero__animation-duration ease-out;
+  -webkit-animation-fill-mode: backwards;
+}
+
+.hero > :nth-child(2) {
+  -webkit-animation-delay: $hero__animation-delay-step*1;
+}
+
+.hero > :nth-child(3) {
+  -webkit-animation-delay: $hero__animation-delay-step*2;
+}
+
+.hero__logo {
+  transform: rotate(0);
+  position: relative;
+  z-index: 2;
+}
+
+.hero__name {
+  font-size: 20px;
+}
+
+.hero__shape {
+  transition: all 2s cubic-bezier(.1,.7,.01,.99), opacity .5s ease-in-out;
+  z-index: 1;
+  position: absolute;
+  opacity: 0.05;
+
+  &:hover {
+    opacity: 0.15;
+  }
+}
+
+.hero__shape--triangle {
+  @function triangle-height($base) { @return $base*1.7320/2 }
+
+  $lateral-side-width: 40px;
+  $triangle-height: triangle-height($lateral-side-width*2);
+
+  width: 0;
+  height: 0;
+  border-left: $lateral-side-width solid transparent;
+  border-right: $lateral-side-width solid transparent;
+  border-bottom: $triangle-height solid black;
+
+  &:after {
+    $inset-lateral-side-width: 33px;
+    $inset-triangle-height: triangle-height($inset-lateral-side-width*2);
+
+    content: '';
+    position: absolute;
+    left: -$inset-lateral-side-width;
+    top: ($triangle-height - $inset-triangle-height)/2 + 2;
+    width: 0;
+    height: 0;
+    border-left: $inset-lateral-side-width solid transparent;
+    border-right: $inset-lateral-side-width solid transparent;
+    border-bottom: $inset-triangle-height solid white;
+  }
+}
+
+.hero__shape--square {
+  height: 61px;
+  width: 61px;
+  background-color: black;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    height: 53px;
+    width: 53px;
+    background-color: white;
+  }
+}
+
+.hero__shape--circle {
+  @extend .hero__shape--square;
+  left: auto;
+  border-radius: 60px;
+
+  &:after {
+    border-radius: 60px;
+  }
+}
+
+@-webkit-keyframes hero__appear--above {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,54 @@
+$logo__animation-duration: .6s;
+
+.logo {
+  height: 95px;
+}
+
+.logo > * {
+  display: inline-block;
+}
+
+.logo__letter {
+  height: 95px;
+  width: 59px;
+  background-image: url('/images/A.svg');
+  background-size: 59px 86px;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0 5px;
+  -webkit-animation: logo__appear--above $logo__animation-duration ease-out;
+}
+
+.logo__bracket {
+  height: 95px;
+  width: 37px;
+  background-size: cover;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-duration: $logo__animation-duration;
+  -webkit-animation-timing-function: ease-out;
+}
+
+.logo__bracket--left {
+  -webkit-animation-name: logo__appear--left ;
+  background-image: url('/images/{.svg');
+}
+
+.logo__bracket--right {
+  -webkit-animation-name: logo__appear--right;
+  background-image: url('/images/}.svg');
+}
+
+@-webkit-keyframes logo__appear--left {
+  0%    { opacity: 0; transform: translateX(-40px); }
+  100%  { opacity: 1; transform: translateX(0px); }
+}
+
+@-webkit-keyframes logo__appear--right {
+  0%    { opacity: 0; transform: translateX(40px); }
+  100%  { opacity: 1; transform: translateX(0px); }
+}
+
+@-webkit-keyframes logo__appear--above {
+  0%    { opacity: 0; transform: translateY(-40px); }
+  100%  { opacity: 1; transform: translateY(0px); }
+}

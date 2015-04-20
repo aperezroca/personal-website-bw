@@ -1,0 +1,47 @@
+$portfolio__animation-delay: 0.5s;
+$portfolio__animation-delay-step: 0.1s;
+$portfolio__animation-duration: 0.2s;
+
+.portfolio {
+  background-color: black;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  padding: 20px;
+}
+
+.portfolio__item {
+  display: block;
+  height: calc(100vw/3 - 27px);
+  width: calc(100vw/3);
+  background-color: lightgrey;
+  margin-right: 20px;
+  border-radius: 2px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  &:first-child, &:nth-child(2), &:nth-child(3) {
+    -webkit-animation: portfolio__appear--bottom .8s ease-in-out;
+    -webkit-animation-fill-mode: backwards;
+  }
+
+  &:first-child  {
+    -webkit-animation-delay: $portfolio__animation-delay + $portfolio__animation-delay-step*0;
+  }
+
+  &:nth-child(2) {
+    -webkit-animation-delay: $portfolio__animation-delay + $portfolio__animation-delay-step*1;
+  }
+
+  &:nth-child(3) {
+    -webkit-animation-delay: $portfolio__animation-delay + $portfolio__animation-delay-step*2;
+  }
+}
+
+@-webkit-keyframes portfolio__appear--bottom {
+  0%   { transform: translateY(0);     }
+  70%  { transform: translateY(-70px); }
+  100% { transform: translateY(-60px); }
+}
